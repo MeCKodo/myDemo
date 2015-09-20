@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#box {
+				position: relative;
+				width: 600px;
+				margin: 50px auto;
+				height: 30px;
+				border: 1px solid red;
+			}
+			#scroll {
+				position: absolute;
+				width: 100px;
+				height: 30px;
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="scroll"></div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var scroll = document.getElementById("scroll");
+			var box = document.getElementById("box");
+			var winW = document.documentElement.clientWidth || document.body.clientWidth;
+			var winH = document.documentElement.clientHeight || document.body.clientHeight;
+			scroll.onmousedown = function(e) {
+				e.preventDefault();
+				var e = e || window.event;
+				var posX = e.clientX - scroll.offsetLeft;
+				var posY = e.clientY - scroll.offsetTop;
+				
+				document.onmousemove = function(e) {
+					var e = e || window.event;
+					
+					var left = e.clientX - posX;
+					if (left < 0) {
+						left = 0;
+					} else if(left > box.offsetWidth - scroll.offsetWidth){
+						left = box.offsetWidth- scroll.offsetWidth;
+					}
+					scroll.style.left = left + 'px';
+				}
+				document.onmouseup = function(e) {
+					this.onmousemove = null;
+					this.onmouseup = null;
+				}
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

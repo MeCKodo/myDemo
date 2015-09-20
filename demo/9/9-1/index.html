@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;;
+			}
+			#box {
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background: #000;
+				top: 0;
+				left: 0;
+			}
+			.pox {
+				position: absolute;
+				border: 1px dashed #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">sdfsdfsdf</div>
+		<div id="pox"></div>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var winW = document.documentElement.clientWidth || document.body.clientWidth;
+			var winH = document.documentElement.clientHeight || document.body.clientHeight;
+			box.onmousedown = function(e) {
+				e.preventDefault();
+				var e = e || window.event;
+				var posX = e.clientX - box.offsetLeft;
+				var posY = e.clientY - box.offsetTop;
+				
+				var pox = document.createElement("div");
+				pox.className = 'pox';
+				pox.style.width = box.offsetWidth + 'px';
+				pox.style.height = box.offsetHeight + 'px';
+				pox.style.left = box.offsetLeft+ 'px';
+				pox.style.top = box.offsetTop + 'px';
+				document.body.appendChild(pox);
+				
+				document.onmousemove = function(e) {
+					var e = e || window.event;
+					
+					var left = e.clientX - posX;
+					var top = e.clientY - posY;
+					if(left < 0) {
+						left = 0;
+					} else if(left > winW - box.offsetWidth) {
+						left = winW - box.offsetWidth - 2;
+					}
+					if(top <  0) {
+						top = 0;
+					} else if (top > winH - box.offsetHeight) {
+						top = winH - box.offsetHeight - 2;
+					}
+					pox.style.left = left + 'px';
+					pox.style.top = top + 'px';
+				}
+				document.onmouseup = function(e) {
+					this.onmousemove = null;
+					this.onmouseup = null;
+					
+					box.style.left = pox.offsetLeft + 'px';
+					box.style.top = pox.offsetTop + 'px';
+					document.body.removeChild(pox);
+				}
+			}
+		</script>
+	</body>
+</html>

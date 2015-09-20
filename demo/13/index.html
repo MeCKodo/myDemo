@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#box {
+				position: relative;
+				width: 900px;
+				height: 350px;
+				margin: 100px auto;
+				background: #f7f7f7;
+				cursor: crosshair;
+				z-index: 1;
+			}		
+			a {
+				    text-align: center;
+    display: block;
+    color: #abcdef;
+			}
+			.tips {
+				position: absolute;
+				padding: 7px 20px;
+				color: #999;
+				background: #000;
+				border-radius: 5px;
+				font-size: 12px;
+				-webkit-user-select: none;
+				display: none;
+			}
+			.tips:after {
+				content: " ";
+			    width: 0;
+			    height: 0;
+			    border-left: 7px solid transparent;
+			    border-right: 7px solid transparent;
+			    border-bottom: 7px solid #000;
+			    position: absolute;
+			    left: 19px;
+			    top: -7px;
+			}
+			ul {
+				list-style: none;
+			}
+			#addCommit {
+			    position: absolute;
+			    z-index: 9999;
+			    font-family: "微软雅黑";
+			    margin: -5px 0 0 65px;
+			    opacity: 0;
+			    -webkit-transition: all 1s ease;
+			    -moz-transition: all 1s ease;
+			    -ms-transition: all 1s ease;
+			    -o-transition: all 1s ease;
+			    transition: all 1s ease;
+			}
+			#addCommit.on {
+				opacity: 1;
+			}
+			#addCommit img {
+				border: 4px solid rgba(255,255,255,.5);
+			    display: inline-block;
+			    width: 45px;
+			    -webkit-border-radius: 100%;
+			    -moz-border-radius: 100%;
+			    border-radius: 100%;
+			    top: 10px;
+			    position: absolute;
+			    left: -70px;
+			}
+			#addCommit input {
+			    padding: 3px 15px;
+			    display: inline-block;
+			    height: 35px;
+			    vertical-align: top;
+			    width: 200px;
+			    -webkit-border-radius: 5px 5px 0 0;
+			    -moz-border-radius: 5px 5px 0 0;
+			    border-radius: 5px 5px 0 0;
+			    border-left: none;
+			    border-top: none;
+			    border-right: none;
+			    border-bottom: 1px dotted #E6E6E6;
+			    color: #999;
+			    position: relative;
+			    background: #fff;
+			    background: rgba(255,255,255,.97);
+			    outline: none;
+			    line-height: 35px;
+			}
+			
+			#addCommit .tare {
+			    padding: 10px 15px;
+			    display: block;
+			    height: 30px;
+			    vertical-align: top;
+			    width: 200px;
+			    border: 0;
+			    color: #444;
+			    line-height: 24px;
+			    overflow: hidden;
+			    background: #fff;
+			    background: rgba(255,255,255,.97);
+			    position: relative;
+			   	
+			}
+			#addCommit.on .tare {
+				height: 90px;
+				 -webkit-transition: height 1s ease .2s;
+			    -moz-transition: height 1s ease .2s;
+			    -ms-transition: height 1s ease .2s;
+			    -o-transition: height 1s ease .2s;
+			    transition: height 1s ease .2s;
+			}
+			#addCommit button {
+			    font-family: 微软雅黑;
+			    color: #D5D5D5;
+			    padding: 10px 15px;
+			    display: block;
+			    height: 40px;
+			    vertical-align: top;
+			    width: 230px;
+			    border: 0;
+			    line-height: 24px;
+			    -webkit-border-radius: 0 0 5px 5px;
+			    -moz-border-radius: 0 0 5px 5px;
+			    border-radius: 0 0 5px 5px;
+			    background: #f1f1f1;
+			    font-size: 17px;
+			    cursor: pointer;
+			    -webkit-transition: all .2s ease;
+			    -moz-transition: all .2s ease;
+			    -ms-transition: all .2s ease;
+			    -o-transition: all .2s ease;
+			    transition: all .2s ease;
+			}
+			#addCommit button:hover {
+			    color: #fff;
+    				background: #01E188;
+			}
+			#commitBox {
+				position: relative;
+			}
+			.commit-item {
+			    position: absolute;
+			    width: 10px;
+			    height: 10px;
+			    background: #9EEEF5;
+			    border-radius: 50%;
+			    border: 4px solid #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<h2><a href="http://www.forchange.cn" target="_blank" title="风变官网">原始效果链接</a></h2>
+		<p style="text-align: center;">以下效果只是一个小demo具体实现可看以上链接</p>
+		<div id="box">
+			<ul id="commitBox">
+			</ul>
+			
+			<p class="tips" id="J_tips">双击后有惊喜哟!</p>
+			<div id="addCommit">
+				<img src="http://7xlixp.com2.z0.glb.qiniucdn.com/forchange/default.png" alt="" />
+				<input type="text" name="" id="" placeholder="你猜" />
+				<textarea class="tare"></textarea>
+				<button id="btn">上墙</button>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var addCommit = document.getElementById("addCommit");
+			var btn = document.getElementById("btn");
+			
+			addCommit.onclick = function(e) {
+				e.stopPropagation();
+			}
+			
+			btn.onclick = function(e) {
+				var addCom = document.getElementById("addCommit");
+				var e = e || window.e;
+				var Y = addCom.style.top;
+				var X = addCom.style.left;
+				
+				var commitBox = document.getElementById("commitBox");
+				
+				var lis = document.createElement("li");
+				lis.className = 'commit-item';
+				lis.style.top = parseInt(Y) + 20 + 'px';
+				lis.style.left = parseInt(X) + 20 + 'px';
+				commitBox.appendChild(lis);
+				
+			}
+			
+			
+			box.addEventListener('click',singleClick,false);
+			box.addEventListener('dblclick',dbClick,false	);
+			
+			function singleClick(e) {
+				var e = e || window.e;
+				var Y = e.clientY - this.offsetTop;
+				var X = e.clientX - this.offsetLeft;
+				
+				var addCom = document.getElementById("addCommit");
+				addCom.style.display = "none";
+				addCom.className = '';
+				
+				var tips = document.getElementById("J_tips");
+				tips.style.display = 'block';
+				tips.style.top  = Y + 15 + 'px';
+				tips.style.left = X - 30 + 'px';
+				
+			}
+			
+			function dbClick(e) {
+				var e = e || window.e;
+				var Y = e.clientY - this.offsetTop;
+				var X = e.clientX - this.offsetLeft;
+				
+				var tips = document.getElementById("J_tips");
+				tips.style.display = 'none';
+				
+				var addCom = document.getElementById("addCommit");
+				addCom.style.display = "block";
+				addCom.style.top = Y - 30 + 'px';
+				addCom.style.left = X - 20 + 'px';
+				
+				setTimeout(function() {addCom.className = 'on';},0)
+				
+				
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			img {
+				width: 100%;
+			}
+			.swipe {
+				position: relative;
+				margin: 0 auto;
+				width: 400px;
+				height: 159px;
+				overflow: hidden;
+			}
+			.swipe ul {
+				position: relative;
+				left: 0px;
+				width: 400px;
+				height: 159px;
+				list-style:none;
+				-webkit-transition: all .3s ease-in;
+				/*transform: translate3d(200px,0px,0px);*/
+			}
+			.swipe ul li {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 159px;
+				width: 400px;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="swipe" >
+			<ul id="slider">
+				<li><img src="ali1.jpg"/></li>
+				<li><img src="ali3.png"/></li>
+				<li><img src="ali4.jpg"/></li>
+				<li><img src="ali5.jpg"/></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var aul = document.getElementById("slider");
+			var lis = aul.getElementsByTagName('li');
+			var liW = lis[0].offsetWidth;  //得到每一个li的宽度
+			var lilen = lis.length;        //li集合的个数
+			
+			for (var i = 0; i < lilen; i++) {   //初始化所有li位置
+				lis[i].style.webkitTransform = 'translate3d(' + i * liW + 'px,0px,0px)'; 
+			}
+			var a = 0;
+			var b = 0;
+			function move() {
+				a++;
+				if (a >= lilen) { 
+					b = a%lilen;  
+					var now = Math.ceil(getStyle(lis[b],'webkitTransform').split(",")[4]);
+					//now是先要获取当前取于后的li位置
+					lis[b].style.webkitTransform = 'translate3d(' + parseInt(now + lilen * liW) + 'px,0px,0px)';
+					//当前他的位置 在加上所需要的距离 就是下一次的距离
+				}
+				aul.style.webkitTransform = 'translate3d(' + (-400*a) + 'px,0px,0px)';
+				//ul的位置变化
+			}
+			setInterval(move,2000);
+			
+			function getStyle(obj, name) {
+				if (obj.currentStyle) {
+					return obj.currentStyle[name];
+				} else {
+					return getComputedStyle(obj, null)[name];
+				}
+			}
+			
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
