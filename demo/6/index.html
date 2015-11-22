@@ -58,7 +58,7 @@
 	String.prototype.Right = function(i,e) {				
  		return this.slice(this.length - i,this.length).substr(0,e); 
 	};
-	
+	ShowCountDown(2020,6,30);
 	function ShowCountDown(year,month,day) { 
 		var now = new Date(); 
 		var endDate = new Date(year, month-1, day); 
@@ -73,12 +73,12 @@
 		var day = document.getElementById("day");
 		var time = document.getElementById("time");
 		day.innerHTML = day1 + '天';
-		time.innerHTML = hour + "小时:" + minute + ":" + second +":" +  ms.Right(3,2);
+		time.innerHTML = hour + "小时" + minute + "分钟" + second +"秒";
 			
 	}
 	setInterval(function(){
-		ShowCountDown(2020,6,30);
-	}, 50);
+		ShowCountDown(2020,6,30); //只需要传入你想要的日期即可
+	}, 1000);
 	
 		</script>
 	</body>

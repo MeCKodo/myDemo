@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+		<title></title>
+		<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		#footer {
+				height: 50px;
+				position: absolute;
+				top: 10%;
+				width: 100%;
+				overflow: hidden;
+			}
+			#round {
+				   position: absolute;
+				  top: 0px;
+				  z-index: 1;
+				  height: 1px;
+				  width: 70px;
+				  border-radius: 50%;
+				  background: transparent;
+				  box-shadow: 0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000,0 30px 40px #000;
+  				  animation: moveLeft 2s infinite;
+				  -webkit-animation: moveLeft 2s infinite;
+			}
+			#footer p {
+				   position: absolute;
+				  top: 0px;
+				  z-index: 3;
+				  background: url(text.png) no-repeat;
+				  height: 100px;
+				  width: 100%;
+				  background-size: 100%;
+			}
+			@keyframes moveLeft {
+				from{left: 0;}
+				to{left: 100%;}
+			}
+			@-webkit-keyframes moveLeft {
+				from{left: 0;}
+				to{left: 100%;}
+			}
+			
+			#box {
+				position: absolute;
+				height: 50px;
+				margin:150px auto;
+				width: 70px;
+				border-radius: 50%;
+				box-shadow: 0 0 15px #000;
+				 animation: moveLeft 2s infinite;
+				  -webkit-animation: moveLeft 2s infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>务必在移动端下查看，谷歌可用手机模式</h2>
+		<footer id="footer">
+			<div id="round"></div>
+			<p></p>
+		</footer>
+		
+	</body>
+</html>

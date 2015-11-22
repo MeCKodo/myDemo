@@ -1,0 +1,132 @@
+body {
+    background: #222;
+    color: #fff;
+}
+.container {
+
+}
+/*圆环开始*/
+.round-box {
+    width: 85%;
+    margin: 10px auto;
+}
+#round_1 {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 245px;
+    height: 245px;
+    -webkit-transform: rotateY(-180deg) rotateZ(-90deg);
+    transform: rotateY(-180deg) rotateZ(-90deg);
+}
+.round-outer {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 270px;
+    height: 270px;
+    border: 1px solid rgba(113, 113, 113, 0.23);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.round-inset {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 210px;
+    height: 210px;
+    border: 2px solid rgba(113, 113, 113, 0.3);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.round {
+    position: relative;
+    height: 280px;
+    width: 280px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 12px;
+    -webkit-transition: all .3s  cubic-bezier(0.44, 0.04, 0.27, 1.32);
+    transition: all .3s  cubic-bezier(0.44, 0.04, 0.27, 1.32);
+    /*-webkit-transform: scale(.8);*/
+    /*transform: scale(.8);*/
+}
+.round.on {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.round-desc {
+    opacity: 0;
+    -webkit-transition: opacity .2s ease .2s;
+    transition: opacity .2s ease .2s;
+}
+.round.on .round-desc {
+    opacity: 1;
+}
+.round-desc h3 {
+    padding: 80px 0 0;
+    font-size: 10px;
+    color: #717171;
+}
+.round b {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    color: #717171;
+}
+.round b:after {
+    content: ' ';
+    position: absolute;
+    top: 17px;
+    left: 18px;
+    width: 1px;
+    height: 10px;
+    background: rgba(113, 113, 113, 0.23);
+    -webkit-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+.round b:before {
+    content: ' ';
+    position: absolute;
+    top: 23px;
+    left: 10px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid rgba(113, 113, 113, 0.23);
+    background: #222;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1;
+}
+.round b i {
+    color: #fff;
+    padding: 0 5px;
+}
+.round-desc i {
+    font-size: 50px;
+}
+.round-desc p {
+    color: #8A8A8A;
+}
+.round-desc p span {
+    color: #fff;
+    margin: 0 5px;
+}
+
+.round.on #circle {
+	
+}
+#circle line {
+    /*-webkit-transition: all .5s ease;*/
+    /*transition: all .5s ease;*/
+}
+
+/*圆环结束*/
+

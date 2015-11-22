@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                font-size: 12px;
+            }
+            .ui-alert {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 300px;
+                height: 150px;
+                padding: 15px;
+                margin: -150px 0 0 -200px;
+                box-shadow: 0 0 5px #ccc;
+                text-align: center;
+                background: #fff;
+            }
+            .ui-alert-title {
+                font-size: 16px;
+                color: #222;
+                margin: 10px 0;
+            }
+            .ui-alert-desc {
+                font-size: 12px;
+                color: #555;
+                margin: 0 auto;
+                width: 84%;
+            }
+            .ui-alert-foot {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                height: 40px;
+                width: 100%;
+            }
+            .ui-alert-foot span {
+                margin: 0 15px;
+                display: inline-block;
+                width: 70px;
+                height: 28px;
+                line-height: 28px;
+            }
+            .ui-alert-ok {
+                background: #222;
+                color: #fff;
+                cursor: pointer;
+            }
+            .ui-alert-close {
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-style: normal;
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                cursor: pointer;
+                background: #444;
+                color: #fff;
+            }
+            button {
+                margin: 50px 20px;
+            }
+            pre {
+                font-size: 14px;
+            }
+        </style>
+	</head>
+	<body>
+        <button id="btn1">默认弹窗</button>
+        <button id="btn2">修改后的弹窗</button>
+        <pre>
+本组件重写了window.alert();
+
+alert();为默认调用方式;
+
+alert({
+    title : "我是title的标题",
+    desc : "我是详细描述",
+    btnText : "按钮文本",
+    ok : function() {
+        console.log('ok按钮的回调');
+    },
+    cancel : function() {
+        console.log('cancel按钮的回调');
+    }
+});
+        </pre>
+		<!--<div class="ui-alert" id="alert">
+            <h2 class="ui-alert-title" id="title"></h2>
+            <p class="ui-alert-desc" id="desc"></p>
+            <div class="ui-alert-foot">
+                <span class="ui-alert-ok" id="ok">确认</span>
+            </div>
+            <i class="ui-alert-close">X</i>
+        </div>-->
+		<script type="text/javascript">
+			window.alert = (function() {
+
+                var body = document.getElementsByTagName('body')[0];
+                function $(id) {
+                    return document.getElementById(id);
+                }
+                function bind(target,type,fn) {
+                    target.addEventListener(type,function() {
+                        fn && fn();
+                    },false);
+                }
+                function mixed(defs,opts) {
+                    for(i in opts) {
+                        defs[i] = opts[i];
+                    }
+                    return defs;
+                }
+                function destory() {
+                    var box = $("alert");
+                    if(box)
+                        box.parentNode.removeChild(box);
+                }
+                function render(options,callback) {
+                    //渲染前要检查是否已经有弹窗了，有就要销毁之前的弹窗，避免页面点出多个弹窗
+                    destory(); 
+
+                    //如果options为func,默认弹窗形式
+                    //我们就把callback给options
+                    if(typeof options == 'function')  
+                        callback = options;
+                        
+                    var defaults = {  //默认配置
+                        title : "我只是一个小title",
+                        desc : "我是只是一行微小的描述",
+                        btnTest : "确认",
+                        ok : function() {
+                            destory();
+                        },
+                        cancel : function() {
+                            destory();
+                        }
+                    };
+                    
+                     //如果用户传了他的配置，我们需要替换默认配置
+                    mixed(defaults,options);
+                    
+                    var tpl = '<div class="ui-alert" id="alert">' //模板
+                                + '<h2 class="ui-alert-title" id="title">'+ defaults.title +'</h2>'
+                                + '<p class="ui-alert-desc" id="desc">'+ defaults.desc +'</p>'
+                                + '<div class="ui-alert-foot">'
+                                + '<span class="ui-alert-ok" id="ok">'+ defaults.btnTest +'</span>'
+                                + '</div>'
+                                + '<i class="ui-alert-close" id="close">X</i>'
+                            + '</div>';
+
+                    body.insertAdjacentHTML('beforeend',tpl);
+                    
+                    callback && callback(); //执行回调
+                }
+
+                return function(options) {
+                    if(typeof options == 'object' ) { //只做了很普通的验证
+                        render(options,function() { //用户传了参数的情况
+                        	//由于dom还没创建完成没法绑定事件
+                        	//所以我们得自己写个回调，当dom插入进了body后
+                        	//在回调函数中绑定事件
+                            var   ok = $('ok'), close = $('close');
+                            bind(ok,'click',function() {
+                                options.ok();
+                                destory();
+                            });
+                            bind(close,'click',function() {
+                                options.cancel();
+                                destory();
+                            });
+                        });
+                    } else {
+                        render(function() { //默认配置情况
+                        	//由于dom还没创建完成没法绑定事件
+                        	//所以我们得自己写个回调，当dom插入进了body后
+                        	//在回调函数中绑定事件
+                            var   ok = $('ok'), close = $('close');
+                            bind(ok,'click',destory);
+                            bind(close,'click',destory);
+                        });
+                    }
+                }
+			})();
+            var obj = {
+                title : "title",
+                desc : "desc",
+                btnTest : 'OK',
+                ok : function() {
+                  console.log('我是ok的回调');
+                },
+                cancel : function() {
+                  console.log('我是cancel的回调');
+                }
+            };
+            var btn1 = document.getElementById('btn1');
+            var btn2 = document.getElementById('btn2');
+            btn1.onclick = function() {
+                alert();
+            };
+            btn2.onclick = function() {
+                alert(obj);
+            };
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			 * {
+			 	padding: 0;
+			 	margin: 0;
+			 }
+			 .container {
+			 	width: 800px;
+			 	margin: 100px auto;
+			 }
+			 .imgs {
+			 	width: 300px;
+			 	height: 300px;
+			 }
+			 .imgs img {
+			 	width: 100%;
+			 }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<input type="file" name="file" id="file" value="上传" />
+			<div class="imgs">
+				<img id="preImg" src=""/>
+			</div>	
+		</div>
+		<script type="text/javascript">
+			var fe = document.getElementById("file");
+			var img = document.getElementById("preImg");
+			fe.onchange = function() {
+				var reader = new FileReader();
+				var _file = this.files[0];
+				//console.log(reader); 
+				//  建议去输出下这3个东西 仔细看看就明白了
+				//console.log(this.files);
+				//console.log(_file); 
+				reader.readAsDataURL(_file);  //这个是很重要的一步  讲读取到的文件编码成DataURL 否则不能用
+				console.log(reader);
+				reader.onload = function() {
+					img.setAttribute('src',this.result);
+				};
+			}
+		</script>
+	</body>
+</html>

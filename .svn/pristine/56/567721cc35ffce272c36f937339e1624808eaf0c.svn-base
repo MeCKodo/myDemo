@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html id="html">
+	<head>
+		<meta charset="utf-8">
+			<meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+		<title>仿阿里</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				font-family: sans-serif;
+				font-size: 20px;
+				background: #ccc;
+				overflow: hidden;
+			}
+			img {
+				width: 100%;
+			}
+			li {
+				list-style: none;
+			}
+			body {
+				overflow: hidden;
+				font:15px/1.5 DroidSansFallback,Arial,sans-serif;
+			}
+			#content {
+				position: relative;
+				width: 16rem;
+				margin: 0 auto;
+			}
+			#banner {
+				position: relative;
+				overflow: hidden;
+				width: 16rem;
+				height: 5rem;
+			}
+			#banner ul {
+				position: relative;
+				width: 16rem;
+				height: 5rem;
+			}
+			#banner ul li {
+				position: relative;
+				width: 16rem !important;
+				height: 5rem;
+				float: left;
+			}
+			#box {
+				margin: 0.5rem 0rem;
+				width: 16rem;
+				height: 7.45rem;
+				background: #fff;
+			}
+			.box-down,.box-up {
+				width: 16rem;
+				height: 3.4rem;
+			}
+			.up-content {
+				width: 4rem;
+				height: 3.4rem;
+				float: left;
+			}
+			.cont-img {
+				margin-top: 0.3rem;
+				margin-left: 1rem;
+				width: 2rem;
+				height: 2rem;
+				background: url(ali2.png);
+				background-size: contain;
+				
+			}
+			.cont-name {
+				text-align: center;
+				font-size: 12px;
+				color: rgb(102, 102, 102);
+				margin-bottom: 0.2rem;
+				width: 4rem;
+				height: 0.9rem;
+				line-height: 0.9rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<section id="banner">
+				<ul class="swipe-wrap">
+					<li> 
+						<a href="#">
+						<img src="ali1.jpg"/>
+						</a>
+					</li>
+					<li> 
+						<a href="#">
+						<img src="ali2.png"/>
+						</a>
+					</li>
+					<li> 
+						<a href="#">
+						<img src="ali1.jpg"/>
+						</a>
+					</li>
+					<li> 
+						<a href="#">
+						<img src="ali2.png"/>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section id="box">
+				<div class="box-up">
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+				</div>
+				<div class="box-down">
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+					<div class="up-content">
+						<div class="cont-img"></div>
+						<div class="cont-name">套点点</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript">
+		
+		function init() {
+			var winw = document.body.clientWidth;   //获取屏幕宽度  这里没做兼容
+			var html = document.getElementById("html");  // 获取html元素
+			var add = 0;   //初始化一个变化值
+			add = (winw - 320)*0.0625;  //经过测试宽度每增加1px，font-size的值就增加0.0625px
+			//用得到屏幕的宽度减去320 计算出 大于320多少宽度 最后得到font-size需要自动设置为多少
+			if (add > 13.75) {
+				add = 13.75;
+			}
+			//做个判断 由于最大的font-size为33.75px  所以这里我就直接用13.75来判断了 
+			html.style.fontSize = 20 + add + 'px';
+		}
+		init();
+		
+		window.onresize = changeWin;  //当每次屏幕有变化的时候都要重新计算一次   比如横屏变为了竖屏 PC端动态变化宽度 
+		function changeWin() {
+			init();
+		}
+		</script>
+	</body>
+</html>

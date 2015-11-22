@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>倒计时</title>
+		<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style"content="black-translucent">
+<meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no" />
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html {
+				height: 100%;
+			}
+			body {
+				box-sizing: content-box;
+				background-size:  cover;
+				letter-spacing: 2.1px;
+			}
+			#box {
+				width: 600px;
+				margin: 100px auto;
+				text-align: center;
+			}
+			h1 {
+				color: #ABCDEF;
+				border-bottom: 1px solid #ccc;
+			}
+			#day {
+				font-size: 160px;
+				line-height: 160px;
+				width: 100%;
+				text-align: center;
+				vertical-align: baseline;
+				font-family: 'Gotham_SSm_7r';
+				color: #00E751; 
+			}
+			#time {
+				font-family: cursive,sans-serif;
+				color: #5B5F67;
+				font-size: 55px;
+			}
+		</style>
+	</head>
+	<body>
+		<section id="box">
+			<h1 >2020年6月30号还有</h1>
+			<h2 id="day"></h2>
+			<span id="time"></span>
+		</section>
+
+		<script type="text/javascript">
+	String.prototype.Right = function(i,e) {				
+ 		return this.slice(this.length - i,this.length).substr(0,e); 
+	};
+	ShowCountDown(2020,6,30);
+	function ShowCountDown(year,month,day) { 
+		var now = new Date(); 
+		var endDate = new Date(year, month-1, day); 
+		var leftTime = endDate.getTime()-now.getTime(); //相差的时间戳
+		var leftsecond = parseInt(leftTime/1000); //相差的秒数
+		var day1 = Math.floor(leftsecond/(60*60*24)); //相差的天数
+		var hour = Math.floor((leftsecond%(60*60*24))/3600);  //相差的小时
+		var minute = Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); //分钟
+		
+		var second = Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);  
+		var ms = leftTime + '';
+		var day = document.getElementById("day");
+		var time = document.getElementById("time");
+		day.innerHTML = day1 + '天';
+		time.innerHTML = hour + "小时" + minute + "分钟" + second +"秒";
+			
+	}
+	setInterval(function(){
+		ShowCountDown(2020,6,30); //只需要传入你想要的日期即可
+	}, 1000);
+	
+		</script>
+	</body>
+</html>
