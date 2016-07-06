@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			body {
+				text-align: center;
+			}
+			#box {
+				position: relative;
+				height: 100px;
+				width: 200px;
+				margin:50px auto;
+			}
+			#box li {
+				position: absolute;
+				list-style: none;
+				width: 200px;
+				height: 100px;
+				display: none;
+			}
+			#box ul {
+				height: 100px;
+				border: 1px solid red;
+			}
+			#pox {
+				position: relative;
+				height: 100px;
+				width: 200px;
+				margin:50px auto;
+			}
+			#pox li {
+				position: absolute;
+				list-style: none;
+				width: 200px;
+				height: 100px;
+				display: none;
+			}
+			#pox ul {
+				height: 100px;
+				border: 1px solid yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>
+			两组图片切换
+			<br />
+			把颜色换为img即可
+		</h1>
+		<div id="box">
+			<ul id="box-ul" data-now="0" data-l="4">
+				<li style="background: red;">0</li>
+				<li style="background: blue;">1</li>
+				<li style="background: gray;">2</li>
+				<li style="background: pink;">3</li>
+			</ul>
+			<p id="box-p"></p>
+		</div>
+		<div id="pox">
+			<ul id="pox-ul" data-now="0" data-l="3">
+				<li style="background: green;">0</li>
+				<li style="background: yellow;">1</li>
+				<li style="background: lightblue;">2</li>
+			</ul>
+			<p id="pox-p"></p>
+		</div>
+		<button id="prev">上一组</button>
+		<button id="next">下一组</button>
+		<script type="text/javascript">
+		
+			var box = document.getElementById("box");
+			var boxUl = document.getElementById("box-ul");
+			var blis = boxUl.getElementsByTagName('li');
+			var bp = document.getElementById("box-p");
+			
+			var pox = document.getElementById("pox");
+			var poxUl = document.getElementById("pox-ul");
+			var plis = poxUl.getElementsByTagName('li');
+			var pp = document.getElementById("pox-p");
+			
+			var prev = document.getElementById("prev");
+			var next = document.getElementById("next");
+				bp.innerHTML = '1/' + blis.length;
+				pp.innerHTML = '1/' + plis.length;
+				plis[0].style.display = "block";
+				blis[0].style.display = 'block';
+				
+			var bl = boxUl.getAttribute("data-l");
+			var pl = poxUl.getAttribute("data-l");
+			boxUl.onclick = function() {
+				objClick(boxUl,boxUl.getAttribute("data-now"),blis,bp);
+			}
+			
+			poxUl.onclick = function() {
+				objClick(poxUl,poxUl.getAttribute("data-now"),plis,pp);
+			 }
+			next.onclick = function() {
+				objClick(boxUl,boxUl.getAttribute("data-now"),blis,bp);
+				objClick(poxUl,poxUl.getAttribute("data-now"),plis,pp);
+			}
+			prev.onclick = function() {
+				objjianjian(boxUl,boxUl.getAttribute("data-now"),blis,bp);
+				objjianjian(poxUl,poxUl.getAttribute("data-now"),plis,pp);
+			}
+			function objjianjian(obj,now,lis,p) {
+				if(now == 0) {
+					now = lis.length - 1;
+				} else {
+					now--;
+				}
+				obj.setAttribute("data-now",now);
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].style.display = "none";
+				}
+				p.innerHTML = now + 1 + '/' + lis.length;
+				lis[now].style.display = "block";
+			}
+			function objClick(obj,now,lis,p) {
+				if(now == lis.length - 1) {
+					now = 0;
+				} else {
+					now++;
+				}
+				obj.setAttribute("data-now",now);
+				for (var i = 0; i < lis.length; i++) {
+					lis[i].style.display = "none";
+				}
+				p.innerHTML = now + 1 + '/' + lis.length;
+				lis[now].style.display = "block";
+			}
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

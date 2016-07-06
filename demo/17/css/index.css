@@ -1,0 +1,344 @@
+@charset "UTF-8";
+body, ul, li, ol, p, span, i, input, img, textarea, button, iframe, h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+i, address {
+  font-style: normal; }
+
+ol, ul {
+  list-style: none; }
+
+a {
+  text-decoration: none; }
+
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6, b {
+  -webkit-text-size-adjust: none;
+  font-weight: 100; }
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video, svg, path, select, option {
+  display: block;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+body {
+  font: 14px/1.5 aileron,微软雅黑,"arial", "sans-serif"; }
+
+input, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+input:focus, textarea:focus, button {
+  outline: none;
+  display: block;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+a {
+  color: #333; }
+
+img {
+  display: block;
+  width: 100%; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both;
+  overflow: hidden; }
+
+.clearfix {
+  zoom: 1; }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("//at.alicdn.com/t/font_1455607634_882192.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/font_1455607634_882192.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1455607634_882192.woff") format("woff"), url("//at.alicdn.com/t/font_1455607634_882192.ttf") format("truetype"), url("//at.alicdn.com/t/font_1455607634_882192.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+.iconfont {
+  font-family: 'iconfont';
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  padding: 0 0 50px; }
+#container{
+	max-width: 540px;
+	margin: 0 auto;
+}
+#header {
+  position: relative;
+  padding: 10px 0 5px;
+  color: #fff;
+  background: #FF9C47; }
+
+#header > div {
+  width: 92%;
+  margin: 0 auto; }
+
+#header span {
+  font-size: 12px;
+  color: #F3F3F3; }
+
+#header p {
+  font-size: 14px;
+  display: block;
+  line-height: 1; }
+
+#header p i {
+  font-size: 26px;
+  font-weight: bold; }
+
+#header a {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  height: 26px;
+  line-height: 26px;
+  width: 110px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  color: #fff; }
+
+#header nav {
+  margin: 25px 0 0; }
+
+#header li {
+  width: 14.28571427%;
+  text-align: center;
+  float: left; }
+
+/*顶部结束*/
+/*日历开始*/
+#date {
+  width: 92%;
+  min-height: 150px;
+  margin: 0 auto;
+  -webkit-transition: height .2s ease;
+  transition: height .2s ease;
+  overflow: hidden; }
+
+#dateBox {
+  -webkit-transform: translate3d(0px, 0, 0);
+  transform: translate3d(0px, 0, 0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  cursor: pointer; }
+
+#dateBox ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 3px 0 0;
+  border-right: 1px solid red;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+#dateBox ul li {
+  width: 14.285714285%;
+  padding: 3px 0;
+  margin: 3px 0;
+  color: #000;
+  text-align: center;
+  float: left; }
+
+#dateBox ul li.other {
+  color: #ccc; }
+
+.trans {
+  -webkit-transition: -webkit-transform .23s ease;
+  transition: -webkit-transform .23s ease; }
+
+/*日历结束*/
+/*图例开始*/
+#footer {
+  width: 85%;
+  margin: 5px auto 0; }
+
+#footer b {
+  display: inline-block;
+  margin: 0 0 0 20px;
+  font-size: 12px;
+  color: #747474;
+  font-weight: bolder; }
+
+#footer:before {
+  content: '';
+  position: absolute;
+  margin: 3px 0;
+  height: 14px;
+  width: 14px;
+  background: #f3f3f3;
+  border-radius: 50%; }
+
+/*图例结束*/
+/*数据统计开始*/
+#totalBox {
+  width: 92%;
+  margin: 5px auto;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef; }
+
+#nav {
+  padding: 5px;
+  height: 22px;
+  line-height: 22px; }
+
+#nav b {
+  width: 40%;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333; }
+
+#nav ul {
+  display: inline-block;
+  float: right;
+  height: 26px;
+  line-height: 25px;
+  font-size: 0;
+  border-bottom: 1px solid #F9F9F9; }
+
+#nav ul li {
+  display: inline-block;
+  width: 30px;
+  margin: 0 3px;
+  font-size: 14px;
+  font-weight: bolder;
+  text-align: center;
+  color: #ccc; }
+
+#nav ul li.on {
+  color: #FF9C47;
+  border-bottom: 2px solid #FF9C47; }
+
+#dateList {
+  padding: 20px 0; }
+
+#dateList ul {
+  font-size: 0; }
+
+#dateList ul li {
+  position: relative;
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+  vertical-align: top; }
+
+#dateList ul li h3 {
+  font-size: 10px;
+  font-weight: bolder;
+  color: #666; }
+
+#dateList ul li b {
+  margin: 0 3px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333; }
+
+#dateList ul li i {
+  font-size: 14px;
+  font-weight: bolder;
+  color: #ccc; }
+
+#dateList ul li:first-child:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10px;
+  border-bottom: 55px solid #FFCEA4;
+  border-left: 20px solid transparent; }
+
+#dateList ul li:first-child:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: -10px;
+  border-bottom: 55px solid white;
+  border-left: 20px solid transparent; }
+
+#dateList ul li:last-child:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-bottom: 55px solid #FFCEA4;
+  border-left: 20px solid transparent; }
+
+#dateList ul li:last-child:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: -10px;
+  border-bottom: 55px solid white;
+  border-left: 20px solid transparent; }
+
+/*列表*/
+#dateList2 {
+  border: 1px solid aqua;
+  margin: 10px 0; }
+
+#dateList2 ul {
+  margin: 10px; }
+
+#dateList2 ul li {
+  margin: 8px 0; }
+
+#dateList2 ul li span {
+  font-weight: bolder;
+  color: #8f8f8f; }
+
+#dateList2 ul li b {
+  float: right;
+  font-weight: bold;
+  color: #414141; }
+
+/*数据统计结束*/
+#foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #fff;
+  text-align: center;
+  -webkit-box-shadow: 0 0 10px #F1F1F1;
+          box-shadow: 0 0 10px #F1F1F1; }
+
+#foot a {
+  position: relative;
+  width: 33.33333%;
+  float: left;
+  font-size: 24px;
+  color: #666; }
+
+#foot a.on {
+  color: #FF9E21;
+  background: #f5f5f5;
+  text-shadow: 0 3px 10px #CACACA; }
+
+#foot a.on:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 55%;
+  height: 3px;
+  background: #FF9E21; }
+
+/*# sourceMappingURL=../maps/Index/date.css.map */

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			button {
+				display: block;
+				width: 100px;
+				height: 30px;
+				margin: 50px auto;
+			}
+		</style>
+	</head>
+	<body>
+		
+			<button id="btn">获取验证码</button>
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			btn.onclick = function() {
+				countDown(this);				
+			}
+
+			function countDown(obj) {   //验证码60s倒计时
+				var a = 10;
+				var timer = setInterval(tt,1000);
+				function tt() {
+					a--;
+					if ( a == 0 ) {
+						obj.innerHTML = "重新获取";
+						a = 60;
+						clearInterval(timer);
+					} else {
+						obj.innerHTML = a + 's';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

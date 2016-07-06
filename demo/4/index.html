@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				text-align: center;
+			}
+			ul {
+				width: 500px;
+				display: block;
+				margin: 20px auto;
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="txt" placeholder="输入要添加的文本" />
+		<button id="btn">加 </button>
+		<ul id="ul">
+			<li>11111</li>
+			<li>22</li>
+			<li>3333</li>
+			<li>4444</li>
+		</ul>
+		<script type="text/javascript">
+			var ul = document.getElementById("ul");
+			var lis = ul.getElementsByTagName('li');
+			var btn = document.getElementById("btn");
+			
+			btn.onclick = function() {   //动态添加li
+				var txt = document.getElementById("txt"),
+					txtValue = txt.value,
+				    ali = document.createElement("li");
+					console.log(txt.value);				    
+					ali.innerHTML = txtValue;
+					ul.appendChild(ali);
+			}
+			
+			ul.onmouseover = function(ev) {
+				var ev = ev || window.event;   //获取发生事件 event 兼容
+				var target = ev.target || ev.srcElement;   //获取真正被触发的元素
+				if (target.nodeName.toLocaleLowerCase() == 'li') {
+					//判断target是否是所需要的元素  正是因为这个判断 我们可以得到任何想要的元素  a li td 等等
+					target.style.background = "red";
+				}
+			}
+			ul.onmouseout = function(ev) {
+				var ev = ev || window.event;
+				var target = ev.target || ev.srcElement;
+				if (target.nodeName.toLocaleLowerCase() == 'li') {
+					target.style.background = "";
+				}
+			}
+		</script>
+	</body>
+</html>
