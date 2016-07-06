@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>我的前端库</title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+    h1 {
+      padding: 20px 0;
+      text-align: center;
+      font-size: 44px;
+      color: #000;
+    }
+    ul {
+      list-style: none;
+    }
+    a {
+      color: #ABCDEF;
+      text-decoration: none;
+    }
+    .box > li {
+      width: 400px;
+      margin: 20px auto;
+      line-height: 50px;
+      font-size: 24px;
+      border: 1px solid #ABCDEF;
+      border-radius: 5px;
+    }
+    .box > li a {
+      display: block;
+      width: 360px;
+      font-size: 22px;
+      padding: 0 0 0 40px;
+      -webkit-transition: all .5s;
+      -moz-transition: all .5s;
+      -ms-transition: all .5s;
+      -o-transition: all .5s;
+      transition: all .5s;
+      letter-spacing: 1.4px;
+    }
+    a:hover {
+      background: #abcdef;
+      color: #fff;
+    }
+    .sub-ul {
+      display: none;
+    }
+    .sub-ul li:first-child {
+      border-top: 1px solid #ABCDEF;
+    }
+    .sub-ul li a{
+      width: 340px;
+      border-top: 1px;
+      font-size: 20px;
+      padding: 0 0 0 60px;
+    }
+  </style>
+</head>
+<body>
+<h1>我的前端作品库</h1>
+<ul class="box" id="box">
+  <li><a href="https://www.pandateacher.com/" target="_blank">20.熊猫书院官网</a></li>
+  <li><a href="demo/17/index.html" target="_blank">19.移动端日历</a></li>
+  <li><a href="demo/18/index.html" target="_blank">18.某种轮播样式</a></li>
+  <li><a href="demo/14/index.html" target="_blank">17.弹窗组件</a></li>
+  <li><a href="demo/16/index.html" target="_blank">16.SVG圆环动效</a></li>
+  <li><a href="http://www.forchange.cn" target="_blank">15.forchange官网</a></li>
+  <li><a href="demo/timeout/index.html" target="_blank">14.倒计时小项目(移动端)</a></li>
+  <li><a href="demo/13/index.html" target="_blank">13.气泡墙</a></li>
+  <li><a href="demo/12/index.html" target="_blank">12.纯CSS 三级菜单</a></li>
+  <li><a href="demo/11/index.html" target="_blank">11.ios滑动解锁文字效果</a></li>
+  <li><a href="demo/10/index.html" target="_blank">10.移动端弹性导航</a></li>
+  <li>
+    <a id="box9">9.拖拽</a>
+    <ul class="sub-ul" id="sub9">
+      <li><a href="demo/9/index.html" target="_blank">9.1普通拖拽</a></li>
+      <li><a href="demo/9/9-1/index.html" target="_blank">9.2显示拖拽</a></li>
+      <li><a href="demo/9/9-2/index.html" target="_blank">9.3模拟滚动条拖拽</a></li>
+      <li><a href="demo/9/9-3/index.html" target="_blank">9.4时光倒流</a></li>
+    </ul>
+  </li>
+  <li><a href="demo/8/index.html" target="_blank">8.获取手机验证码</a></li>
+  <li><a href="demo/7/index.html" target="_blank">7.SVG描边动画</a></li>
+  <li><a href="demo/6/index.html" target="_blank">6.倒计时</a></li>
+  <li><a href="demo/5/index.html" target="_blank">5.HTML5图片上传预览</a></li>
+  <li><a href="demo/4/index.html" target="_blank">4.动态添加文本并带有事件</a></li>
+  <li><a href="demo/3/index.html" target="_blank">3.仿淘宝移动响应式</a></li>
+  <li><a href="demo/2/m-taobao.html" target="_blank">2.仿淘宝移动端轮播</a></li>
+  <li><a href="demo/1/banner-demo.html" target="_blank">1.两组图片切换</a></li>
+</ul>
+<script type="text/javascript">
+  var box = document.getElementById("box");
+  var box9 = document.getElementById("box9");
+  var sub9 = document.getElementById("sub9");
+  box9.onclick = function(e) {
+    e.preventDefault();
+    var status = sub9.style.display;
+    if (status == 'block') {
+      sub9.style.display = 'none';
+    } else {
+      sub9.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
