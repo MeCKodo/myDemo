@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端日历demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+<div id="container">
+	<h1 style="text-align: center;margin: 30px 0 0;">请在移动端下试用</h1>
+    <pre style="line-height: 24px;width: 100%; word-wrap: break-word;">
+    
+	本demo的需求是
+1. 初始进入加载3个月，每次左右滑动加载下个月的dom和数据
+2. 一共只有10个月，跨年的计算。
+3. 初始的情况有3种， 当前月等于开始月，当前月等于结束月，当前月都不等。
+4. 手势滑动，超过二分之一切换上下月，否则当前月
+
+    PS：采用库（etouch，自己的一个手势库）
+    </pre>
+    <header id="header">
+        <div>
+            <span id="year"></span>
+            <p id="month"></p>
+            <!--<p id="month"><i>July</i>/7月</p>-->
+            <!--<a><i></i>炫耀一下</a>-->
+            <nav>
+                <ul class="clearfix">
+                    <li>周一</li>
+                    <li>周二</li>
+                    <li>周三</li>
+                    <li>周四</li>
+                    <li>周五</li>
+                    <li>周六</li>
+                    <li>周日</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="date">
+        <div id="dateBox">
+            <ul></ul>
+            <ul></ul>
+            <ul></ul>
+        </div>
+        <footer></footer>
+    </div>
+    <footer id="footer"><b>连续签到</b></footer>
+    
+</div>
+<script src="//cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+<script src="js/etouch.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
