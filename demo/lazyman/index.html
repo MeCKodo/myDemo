@@ -112,18 +112,6 @@
 		}
 	};
 
-	function b() {
-		var num = 0;
-		return function() {
-			num++;
-		};
-	}
-	function c() {
-		var num = 0;
-		function b() {
-			num ++;
-		}
-	}
 
 	new Lazyman('kodo').sleep(3).eat('b').sleepFirst(2).sleep(4).eat('c');
 </script>
