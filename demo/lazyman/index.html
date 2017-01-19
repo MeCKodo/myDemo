@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>test</title>
+</head>
+<body>
+<div id="container">
+<pre>
+	function Lazyman(name) {
+		console.log('HI! this is ' + name);
+		this.task = [];
+
+		setTimeout(function() {
+			var fn = this.task.shift();
+			fn()
+		}.bind(this))
+	}
+	Lazyman.prototype = {
+		constructor : Lazyman,
+		next() {
+			var fn = this.task.shift();
+			fn && fn();
+		},
+		eat(food) {
+			var self = this;
+			var fn = function eat() {
+				console.log('eat ' + food);
+				self.next();
+			};
+			this.task.push(fn);
+			return this;
+		},
+		sleep(second) {
+			var self = this;
+			var fn = function sleep() {
+				console.log("Wake up after " + second + "s!");
+				setTimeout(function() {
+					self.next();
+				},second * 1000);
+			};
+			this.task.push(fn);
+			return this;
+		},
+		sleepFirst(second) {
+			var self = this;
+			var fn = function sleepFirst() {
+				console.log("sleepFirst Wake up after " + second + "s!");
+				setTimeout(function () {
+					self.next();
+				},second * 1000);
+			};
+			this.task.unshift(fn);
+			return this;
+		}
+	};
+
+	new Lazyman('kodo').sleep(3).eat('b').sleepFirst(2).sleep(4).eat('c');
+
+	打开控制台查看
+</pre>
+</div>
+<script>
+
+	function Lazyman(name) {
+		console.log('HI! this is ' + name);
+		this.task = [];
+
+		setTimeout(function() {
+			var fn = this.task.shift();
+			fn()
+		}.bind(this))
+	}
+	Lazyman.prototype = {
+		constructor : Lazyman,
+		next() {
+			var fn = this.task.shift();
+			fn && fn();
+		},
+		eat(food) {
+			var self = this;
+			var fn = function eat() {
+				console.log('eat ' + food);
+				self.next();
+			};
+			this.task.push(fn);
+			return this;
+		},
+		sleep(second) {
+			var self = this;
+			var fn = function sleep() {
+				console.log("Wake up after " + second + "s!");
+				setTimeout(function() {
+					self.next();
+				},second * 1000);
+			};
+			this.task.push(fn);
+			return this;
+		},
+		sleepFirst(second) {
+			var self = this;
+			var fn = function sleepFirst() {
+				console.log("sleepFirst Wake up after " + second + "s!");
+				setTimeout(function () {
+					self.next();
+				},second * 1000);
+			};
+			this.task.unshift(fn);
+			return this;
+		}
+	};
+
+
+
+	new Lazyman('kodo').sleep(3).eat('b').sleepFirst(2).sleep(4).eat('c');
+</script>
+</body>
+</html>
