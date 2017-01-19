@@ -1,5 +1,6 @@
 ### 我的前端demo库
 
+- [x] 21.[微信面试题LazyMan](http://meckodo.github.io/myDemo/demo/lazyman/index.html)
 - [x] 20.[熊猫书院官网](https://www.pandateacher.com/)
 - [x] 19.[移动端日历组件](http://meckodo.github.io/myDemo/demo/17/index.html)
 - [x] 18.[某种轮播样式](http://meckodo.github.io/myDemo/demo/18/index.html)
