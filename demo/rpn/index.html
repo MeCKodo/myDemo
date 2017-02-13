@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>后缀表达式算法</title>
+</head>
+<body>
+<pre>
+	 RPN 后缀表达式转换器
+
+	 可转换普通的加减乘除 （） 的算式
+	 数字只能0-9 不得出现大于9的数 如10
+	 你可输入类似以下的算式进行测试
+	 1. 7+2/6-1+3*9 => 72*61-3+/9*
+	 2. a*1+(b+C)+1-d => a1+*bc+1+d-
+
+	 具体代码请查看源码
+</pre>
+<input type="text" id="rpn">
+<button id="btn">转换</button>
+<script>
+	// 0级 ()
+	// 1级 */
+	// 2级 +-
+	// 3级 abc 123
+	/**
+	 *  RPN 后缀表达式转换器
+	 *  可转换普通的加减乘除 （） 的算式
+	 *  数字只能0-9 不得出现大于9的数 如10
+	 *  你可输入类似以下的算式进行测试
+	 *  1. 7+2/6-1+3*9 => 72*61-3+/9*
+	 *  2. a*1+(b+C)+1-d => a1+*bc+1+d-
+	 *  具体代码请查看源码
+	 */
+	class RPN {
+		constructor(input) {
+			if(!input) {
+				return alert('请输入后缀表达式');
+			}
+			const l = [ // 运算符优先级
+				['(',0,],
+				[')',0],
+				['*',1],
+				['/',1],
+				['+',2],
+				['-',2],
+			];
+			this.errorMap = ['+','-','*','/',')','(']; // 检测运算符是否重叠
+			this.input = input; //'(a+bb2)*2'
+			this.level = new Map(l);
+			this.outputArr = [-1];
+			this.output = [];
+
+			if(!this.checkInput()) return alert(`${this.input}含有非法字符，空格也不行`);
+
+			this.checkSymbolRepeat(() => {
+				this.stack();
+			});
+		}
+		checkInput() { // 判断是否含有非法字符
+			return Array.from(this.input).every(item => {
+				return /([a-z]|[A-Z]|\d|\+|-|\*|\/|\(|\))+/.test(item)
+			})
+		}
+		checkSymbolRepeat(cb) { // 判断算式是否合法
+			// **|--|++|//  *+-/ 都不行
+			// *|+|-|/ ()  可以
+			for (let i = 0, len = this.input.length; i < len; i++) {
+				let pre = this.getLevel(this.input[i]),
+					next = this.getLevel(this.input[i+1]);
+//					console.log(pre,'------ pre :: ',next,'------- next');
+			  if(  pre === next && pre !== 3 ) {
+				  // 如果两个相邻的都是运算符则有误
+				  return alert(`${this.input} 后缀表达式有误，不得连续两个同级的运算符`);
+			  }
+			}
+			return cb && cb();
+		}
+		getLevel(s) { // 获取字符级别，进行出入栈判断
+			if (/([a-z]|[A-Z]|\d)+/.test(s)) return 3;
+			return this.level.get(s);
+		}
+		stack() {
+			let i = 0,
+			    input = this.input,
+			    len = input.length;
+			while (i < len) {
+				let stackLast = this.outputArr[this.outputArr.length - 1];
+//				console.log(stackLast, this.getLevel(input[i]));
+				if(stackLast !== -1) {
+					stackLast = this.getLevel(stackLast);
+				}
+
+				if(stackLast < this.getLevel(input[i])) {
+					// 掉入栈
+					this.outputArr.push(input[i]);
+					i++;
+				} else {
+					// stackLast 出栈 如果 级数相等要出栈，级数大于也要出栈
+					// 但是如果 都为（）则抵消 i+1 继续循环判断下一个
+					if ( stackLast + this.getLevel(input[i]) === 0 ) {
+						// 为（）对比的情况 抵消括号
+						this.outputArr.pop();
+						i++;
+					} else {
+						this.output.push(this.outputArr.pop());
+					}
+				}
+
+				if(i === len) { // 字符串循环完后，还需要pop栈里的数据
+					let idx = 0,
+					lens = this.outputArr.length;
+
+					while (idx < lens - 1) {
+						// 默认栈里还有个 -1 不用pop进去，所以lens - 1
+						this.output.push(this.outputArr.pop());
+						idx++;
+					}
+				}
+
+			}
+
+			console.log(this.output);
+			this.render(this.output.join(''))
+		}
+		render(output) {
+			const p = document.createElement('p');
+			const text = document.createTextNode(` ${this.input} 转换后为：${output}`);
+			p.appendChild(text);
+			document.body.appendChild(p);
+		}
+	}
+	let input = document.getElementById('rpn');
+	let btn = document.getElementById('btn');
+
+	btn.addEventListener('click',() => {
+		new RPN(input.value.trim());
+	},false);
+
+//	new RPN('(a+bb2))*2');
+//	new RPN('(a+bb2)*2');
+//	new RPN('(a+bbb2)*2');
+// a*(b+C)-d
+	// 7+2/6-1+3*9  72*61-3+/9*
+	// a*1+(b+C)+1-d   a1+*bc+1+d-
+</script>
+</body>
+</html>
