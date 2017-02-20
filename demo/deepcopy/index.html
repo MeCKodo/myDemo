@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>深拷贝</title>
+</head>
+<body>
+<pre>
+  const isObject = obj => Object.prototype.toString(obj) === '[object Object]';
+  const isArray = array => Array.isArray(array);
+
+  let human = {
+    name: 'kodo',
+    age: 18,
+    work1: ['web', 'student'],
+    hubby: {
+      game: ['sc2', 'dota2']
+    }
+  };
+  function deepClone(target) {
+
+    if (target === null || typeof target !== "object") {
+      return target;
+    }
+
+    let newTarget = isArray(target) ? [] : {};
+
+    for ( let key in target ) {
+      if (target.hasOwnProperty(key)) {
+        let value = target[key];
+
+        if (value === target) {
+          continue;
+        }
+
+        if (isObject(value) || isArray(value)) {
+          newTarget[key] = deepClone(value)
+        } else {
+          newTarget[key] = value;
+        }
+      }
+    }
+
+    return newTarget;
+  }
+
+
+  var a = deepClone(human);
+  //	console.log(a);
+  a.name = 'sc222';
+  console.log(human, '---human---');
+  console.log(a, '---a---');
+</pre>
+<script>
+  const isObject = obj => Object.prototype.toString(obj) === '[object Object]';
+  const isArray = array => Array.isArray(array);
+
+  let human = {
+    name: 'kodo',
+    age: 18,
+    work1: ['web', 'student'],
+    hubby: {
+      game: ['sc2', 'dota2']
+    }
+  };
+  function deepClone(target) {
+
+    if (target === null || typeof target !== "object") {
+      return target;
+    }
+
+    let newTarget = isArray(target) ? [] : {};
+
+    for ( let key in target ) {
+      if (target.hasOwnProperty(key)) {
+        let value = target[key];
+
+        if (value === target) {
+          continue;
+        }
+
+        if (isObject(value) || isArray(value)) {
+          newTarget[key] = deepClone(value)
+        } else {
+          newTarget[key] = value;
+        }
+      }
+    }
+
+    return newTarget;
+  }
+
+
+  var a = deepClone(human);
+  //	console.log(a);
+  a.name = 'sc222';
+  console.log(human, '---human---');
+  console.log(a, '---a---');
+</script>
+</body>
+</html>
