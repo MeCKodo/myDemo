@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>栈</title>
+</head>
+<body>
+<pre>
+	class Stack {
+	  constructor() {
+	    this.data = [];
+			this.index = -1;
+		}
+
+		pop() { // 出栈
+			if(this.index === -1) {
+			  return console.log('栈下溢');
+			}
+			return this.data[this.index--]
+		}
+
+		push(elm) { // 入栈
+	    this.index = ++this.index;
+	    this.data[this.index] = elm;
+		}
+
+		size() { // 返回length
+			return this.index + 1;
+		}
+
+		isEmpty() { // 是否为空
+			return this.index === -1;
+		}
+
+		clear() { // 清空
+ 	    this.index = -1;
+		}
+
+	}
+
+	var stack = new Stack();
+  stack.push(1); // [1]
+  stack.push(2); // [1,2]
+  stack.clear(); //
+	console.log(stack.isEmpty()); // true
+  stack.push(2);
+	console.log(stack.isEmpty()); // false
+  console.log(stack)
+</pre>
+<script>
+	class Stack {
+	  constructor() {
+	    this.data = [];
+			this.index = -1;
+		}
+
+		pop() { // 出栈
+			if(this.index === -1) {
+			  return console.log('栈下溢');
+			}
+			return this.data[this.index--]
+		}
+
+		push(elm) { // 入栈
+	    this.index = ++this.index;
+	    this.data[this.index] = elm;
+		}
+
+		size() { // 返回length
+			return this.index + 1;
+		}
+
+		isEmpty() { // 是否为空
+			return this.index === -1;
+		}
+
+		clear() { // 清空
+ 	    this.index = -1;
+		}
+
+	}
+
+  var stack = new Stack();
+  stack.push(1); // [1]
+  stack.push(2); // [1,2]
+  stack.clear(); // index = -1
+  console.log(stack.isEmpty()); // true
+  stack.push(2); // [2,2] index = 0
+  console.log(stack.isEmpty()); // false
+  console.log(stack)
+
+
+
+</script>
+</body>
+</html>

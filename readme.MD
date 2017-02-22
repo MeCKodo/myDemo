@@ -1,5 +1,6 @@
 ### 我的前端demo库
 
+- [x] 24.[栈](http://meckodo.github.io/myDemo/demo/stack/index.html)
 - [x] 23.[DeepClone](http://meckodo.github.io/myDemo/demo/deepcopy/index.html)
 - [x] 22.[实现后缀表达式算法](http://meckodo.github.io/myDemo/demo/rpn/index.html)
 - [x] 21.[微信面试题LazyMan](http://meckodo.github.io/myDemo/demo/lazyman/index.html)
