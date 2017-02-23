@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<meta name="hotcss" content="max-width=750">
+	<title>队列</title>
+</head>
+<body>
+<pre>
+class Quene {
+	  constructor() {
+	    this.data = [];
+	    this.front = 0;
+	    this.rear = 0;
+		}
+		push(elm) {
+			this.data[this.rear] = elm;
+      this.rear++;
+		}
+		pop() {
+	    if(this.isEmpty()) {
+	      return console.error('队列已经为空了，这次操作为下溢');
+			}
+			return this.data[this.front++];
+		}
+		size() {
+			return this.rear - this.front;
+		}
+		isEmpty() {
+			return this.front === this.rear;
+		}
+		clear() {
+			this.front = this.rear = 0;
+		}
+	}
+
+	var q = new Quene();
+  q.push(1);
+  q.push(2);
+  q.size(); // 2
+  q.pop();
+  q.pop();
+  q.isEmpty(); // true
+  q.pop();// error
+  q.push(1);
+  q.push(2);
+  q.clear();
+  console.log(q.isEmpty()); // true
+</pre>
+<script>
+	class Quene {
+	  constructor() {
+	    this.data = [];
+	    this.front = 0;
+	    this.rear = 0;
+		}
+		push(elm) {
+			this.data[this.rear] = elm;
+      this.rear++;
+		}
+		pop() {
+	    if(this.isEmpty()) {
+	      return console.error('队列已经为空了，这次操作为下溢');
+			}
+			return this.data[this.front++];
+		}
+		size() {
+			return this.rear - this.front;
+		}
+		isEmpty() {
+			return this.front === this.rear;
+		}
+		clear() {
+			this.front = this.rear = 0;
+		}
+	}
+
+	var q = new Quene();
+  q.push(1);
+  q.push(2);
+  q.size(); // 2
+  q.pop();
+  q.pop();
+  q.isEmpty(); // true
+  q.pop();// error
+  q.push(1);
+  q.push(2);
+  q.clear();
+  console.log(q.isEmpty()); // true
+</script>
+</body>
+</html>
