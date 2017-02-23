@@ -1,5 +1,6 @@
 ### 我的前端demo库
 
+- [x] 25.[队列](http://meckodo.github.io/myDemo/demo/quene/index.html)
 - [x] 24.[栈](http://meckodo.github.io/myDemo/demo/stack/index.html)
 - [x] 23.[DeepClone](http://meckodo.github.io/myDemo/demo/deepcopy/index.html)
 - [x] 22.[实现后缀表达式算法](http://meckodo.github.io/myDemo/demo/rpn/index.html)
