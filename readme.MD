@@ -1,5 +1,6 @@
 ### 我的前端demo库
 
+- [x] 26.[3D立方体](http://meckodo.github.io/myDemo/demo/3Dcube/index.html)
 - [x] 25.[队列](http://meckodo.github.io/myDemo/demo/quene/index.html)
 - [x] 24.[栈](http://meckodo.github.io/myDemo/demo/stack/index.html)
 - [x] 23.[DeepClone](http://meckodo.github.io/myDemo/demo/deepcopy/index.html)
