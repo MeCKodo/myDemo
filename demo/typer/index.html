@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>打字游戏</title>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<style>
+		main {
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #abcdef;
+			border: 1px double yellow;
+			border-radius: 50%;
+		}
+
+		#char {
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			font-size: 100px;
+			color: #fff;
+		}
+
+		#result {
+			text-align: center;
+		}
+
+		.error {
+			color: yellow;
+		}
+		#tips {
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+<p id="tips">请根据提示按键</p>
+<main>
+	<div id="char"></div>
+</main>
+<footer id="result"></footer>
+<script>
+	(function (doc) {
+		function $id(selector) {
+			return doc.getElementById(selector);
+		}
+		class Typer {
+			constructor(doms) {
+				this.current = 0;
+				this.error = 0;
+				this.num = null;
+				this.length = -1;
+				this.userInput = [];
+				this.showDom = $id(doms.target);
+				this.resultDom = $id(doms.result);
+				this.keyUpEvent();
+				this.render();
+			}
+			random() {
+				this.num = Math.floor(Math.random() * 100);
+				this.length = String(this.num).length;
+				this.showDom.innerHTML = this.num;
+				this.userInput = [];
+			}
+
+			keyUpEvent() {
+				doc.body.addEventListener('keyup', (e) => {
+					const key = e.key.toUpperCase();
+					this.userInput.push(key);
+					if(this.userInput.length !== this.length) {
+						return;
+					}
+
+					if(this.userInput.join('') === String(this.num)) {
+						this.showDom.className = 'animated bounceIn';
+						this.random();
+						this.current++;
+						this.render();
+					} else {
+						this.showDom.className = 'animated shake error';
+						this.random();
+						this.error++;
+						this.render();
+					}
+					setTimeout(() => {
+						this.showDom.className = 'animated';
+					}, 500);
+					console.log(key);
+				});
+			}
+
+			render() {
+				const total = this.current + this.error;
+				const p = (this.current / total) * 100 || 0;
+				this.resultDom.innerHTML = `答对了${this.current}题,答错了${this.error}题,正确率${p.toFixed(2)}%`;
+			}
+		}
+
+		window.Typer = Typer;
+	})(document);
+	new Typer({
+		target: 'char',
+		result: 'result',
+	}).random();
+</script>
+</body>
+</html>
