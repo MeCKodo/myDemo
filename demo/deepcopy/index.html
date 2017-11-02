@@ -15,7 +15,7 @@
     name: 'kodo',
     age: 18,
     work1: ['web', 'student'],
-    hubby: {
+    hobby: {
       game: ['sc2', 'dota2']
     }
   };
@@ -61,7 +61,7 @@
     name: 'kodo',
     age: 18,
     work1: ['web', 'student'],
-    hubby: {
+    hobby: {
       game: ['sc2', 'dota2']
     }
   };
@@ -94,10 +94,14 @@
 
 
   var a = deepClone(human);
+  var b = human;
   //	console.log(a);
   a.name = 'sc222';
   console.log(human, '---human---');
   console.log(a, '---a---');
+  b.name = 'scbbbb';
+  console.log(b, '-----b ------');
+  console.log(human, '---human---');
 </script>
 </body>
 </html>

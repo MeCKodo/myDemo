@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="screen-orientation" content="portrait">
+  <title></title>
+</head>
+<body>
+<div class="content"></div>
+
+<template id="template">
+  <p>name: {{name}}</p>
+  <p>age: {{age}}</p>
+</template>
+
+<script type="text/javascript">
+  var match;
+  var tpl = document.querySelector('#template');
+  var content = document.querySelector(".content");
+  var clone = document.importNode(tpl.content, true);
+  content.appendChild(clone);
+  // 模板引擎函数(类似MVC中的controller)
+  var mtpl = function (tpl, data) {
+    var re = /{{(.+?)}}/g;
+    while ( (match = re.exec(tpl)) !== null ) {
+      console.log(match);
+      if (match[1]) {
+        tpl = tpl.replace(match[0], data[match[1]])
+      } else {
+        tpl = tpl.replace(match[0], '')
+      }
+    }
+    return tpl;
+  }
+  var b = mtpl(tpl.innerHTML, {
+    name: 'haha',
+    age: 19,
+    a: 'sdf',
+  })
+</script>
+
+</body>
+</html>
