@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="screen-orientation" content="portrait">
+  <title>QuickSort</title>
+</head>
+<body>
+<pre>
+  function quickSort(arr) {
+    if (!arr.length) return [];
+    const [f, ...l] = arr;
+
+    return [
+      ...quickSort(l.filter(x => x < f)),
+      f,
+      ...quickSort(l.filter(x => x >= f)),
+    ]
+  }
+  console.log(quickSort([100,200,3,12,999]));
+</pre>
+<script>
+  function quickSort(arr) {
+    if (!arr.length) return [];
+    const [f, ...l] = arr;
+
+    return [
+      ...quickSort(l.filter(x => x < f)),
+      f,
+      ...quickSort(l.filter(x => x >= f)),
+    ]
+  }
+  console.log(quickSort([100,200,3,12,999]));
+</script>
+</body>
+</html>
