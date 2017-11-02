@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="screen-orientation" content="portrait">
+  <title>函数节流和防抖</title>
+  <style>
+    input {
+      border:1px solid #ccc;
+      border-radius: 5px;
+      width:300px;
+      height:20px;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<input type="text" id="test" placeholder="来输入，测试debounce">
+<pre>
+
+</pre>
+<script>
+  const $id = id => document.getElementById(id);
+  const inputDom = $id('test');
+  function logValue() {
+    console.log(this.value);
+  }
+  inputDom.addEventListener('input', debounce(logValue));
+
+  function debounce(fn, time = 500, immediate = false) {
+    let timer = null;
+    return function () {
+      if (timer && immediate) {
+        fn.apply(this, arguments);
+      }
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        fn.apply(this, arguments);
+      }, time)
+    }
+  }
+</script>
+</body>
+</html>
