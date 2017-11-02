@@ -11,7 +11,20 @@
 
 </div>
 <script>
+  function bubbleSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - i; j++) {
+        if (arr[j] > arr[j + 1]) { // 前大于后 前跟后交换 小到大
+          const temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
+      }
+    }
+    return arr;
+  }
 
+  console.log(bubbleSort([100, 200, 3, 12, 999, 999]));
 </script>
 </body>
 </html>

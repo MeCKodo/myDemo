@@ -1,5 +1,7 @@
 ### 我的前端demo库
 
+- [x] 29.[冒泡排序](http://meckodo.github.io/myDemo/demo/BubbleSort/index.html)
+- [x] 28.[快排](http://meckodo.github.io/myDemo/demo/QuickSort/index.html)
 - [x] 27.[小学生打字游戏](http://meckodo.github.io/myDemo/demo/typer/index.html)
 - [x] 26.[3D立方体](http://meckodo.github.io/myDemo/demo/3Dcube/index.html)
 - [x] 25.[队列](http://meckodo.github.io/myDemo/demo/quene/index.html)
