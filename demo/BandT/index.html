@@ -7,10 +7,10 @@
   <title>函数节流和防抖</title>
   <style>
     input {
-      border:1px solid #ccc;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      width:300px;
-      height:20px;
+      width: 300px;
+      height: 20px;
       padding: 10px;
       font-size: 14px;
     }
@@ -19,17 +19,22 @@
 <body>
 <input type="text" id="test" placeholder="来输入，测试debounce">
 <pre>
-
+  请查看控制台，分别在输入框输入测试debounce效果
+  或者拖动窗口查看trottle效果
 </pre>
 <script>
   const $id = id => document.getElementById(id);
   const inputDom = $id('test');
+
   function logValue() {
     console.log(this.value);
   }
+  function resizeChange() {
+    console.log('别再拉我了，要断了');
+  }
   inputDom.addEventListener('input', debounce(logValue));
-
-  function debounce(fn, time = 500, immediate = false) {
+  window.addEventListener('resize', throttle(resizeChange, 300));
+  function debounce(fn, delay = 500, immediate = false) {
     let timer = null;
     return function () {
       if (timer && immediate) {
@@ -38,9 +43,24 @@
       clearTimeout(timer);
       timer = setTimeout(() => {
         fn.apply(this, arguments);
-      }, time)
+      }, delay)
     }
   }
+
+  function throttle(fn, delay = 500) {
+    let run = true;
+    return function () {
+      if (!run) {
+        return;
+      }
+      run = false;
+      setTimeout(() => {
+        fn.apply(this, arguments);
+        run = true;
+      }, delay)
+    }
+  }
+
 </script>
 </body>
 </html>
