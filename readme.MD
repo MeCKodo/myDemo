@@ -1,5 +1,6 @@
 ### 我的前端demo库
 
+- [x] 30.[函数节流和防抖](http://meckodo.github.io/myDemo/demo/BandT/index.html)
 - [x] 29.[冒泡排序](http://meckodo.github.io/myDemo/demo/BubbleSort/index.html)
 - [x] 28.[快排](http://meckodo.github.io/myDemo/demo/QuickSort/index.html)
 - [x] 27.[小学生打字游戏](http://meckodo.github.io/myDemo/demo/typer/index.html)
