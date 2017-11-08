@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="screen-orientation" content="portrait">
+  <title>预加载图片</title>
+
+</head>
+<body>
+<h3>
+  预加载图片，可以作用于需要图多的H5，然后做loading，也能拓展下做加载的进度
+  打开控制台查看
+</h3>
+<pre>
+  function loadImg() {
+      const loadPromiseArr = imgArr.map((url) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = function imgOnLoad() {
+            resolve(url);
+          };
+          img.onerror = function imgOnError() {
+            // 可以返回一个友好的占位图链接
+            resolve('load fail');
+          }
+        })
+      });
+      Promise.all(loadPromiseArr)
+             .then((arr) => {
+               console.log(arr);
+               // TODO 最图片返回的链接进行而外操作
+             })
+  }
+</pre>
+<script>
+  const imgArr = [
+    'https://cdn.camarts.cn/2016/01/IMG_2955.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_1111.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2958.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2947.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2940.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2889.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2884.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2887.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2890.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2891.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2900.jpg',
+    'https://cdn.camarts.cn/2016/01/IMG_2878.jpg',
+  ];
+
+  function loadImg() {
+    const loadPromiseArr = imgArr.map((url) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = function imgOnLoad() {
+          resolve(url);
+        };
+        img.onerror = function imgOnError() {
+          // 可以返回一个友好的占位图链接
+          resolve('load fail');
+        }
+      })
+    });
+    Promise.all(loadPromiseArr)
+           .then((arr) => {
+             console.log(arr);
+             // TODO 最图片返回的链接进行而外操作
+           })
+  }
+
+  loadImg();
+</script>
+</body>
+</html>
